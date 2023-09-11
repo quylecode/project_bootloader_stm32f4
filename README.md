@@ -16,10 +16,10 @@ Bootloader STM32 includes the following features:
 
 ## Detailed Bootloader
 
-**Address Save Bootloader**: 0x08000000 (32KBytes)
-**Address Load Firmware**: 0x08008000
-**Speed UART use**: 115200
-Note: bootloader not protect memory
+1. **Address Save Bootloader**: 0x08000000 (32KBytes)
+2. **Address Load Firmware**: 0x08008000
+3. **Speed UART use**: 115200
+4. **Note**: bootloader not protect memory
 
 ## Flowchart Bootloder STM322F4
 ![Flowchart Bootloder STM322F4](./flowchart_bootloader_stm32.drawio.svg)
