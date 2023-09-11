@@ -1,0 +1,66 @@
+@startuml formdata
+
+concise "READ" as CRLM
+concise "WRITE" as CWLM
+concise "ERASE" as CELM
+concise "JUMP" as CJAM
+scale 100 as 60 pixels
+hide time-axis
+
+CRLM is idle
+CWLM is idle
+CELM is idle
+CJAM is idle
+
+@CRLM
+100 is start
++100 is cmd
++100 is address
++400 is bytes
++200 is crc
++200 is idle
+@100 <-> @200 : 1 Byte
+@200 <-> @300 : 1 Byte
+@300 <-> @700 : 4 Bytes
+@700 <-> @900 : 1 Byte
+@900 <-> @1100 : 2 Bytes
+
+@CWLM
+100 is start
++100 is cmd
++100 is address
++400 is len
++100 is data
++200 is crc
++200 is idle
+@100 <-> @200 : 1 Byte
+@200 <-> @300 : 1 Byte
+@300 <-> @700 : 4 Bytes
+@700 <-> @800 : 1 Byte
+@800 <-> @1000 : Max 256 Bytes
+@1000 <-> @1200 : 2 Bytes
+
+@CELM
+100 is start
++100 is cmd
++100 is address
++400 is crc
++200 is idle
+@100 <-> @200 : 1 Byte
+@200 <-> @300 : 1 Byte
+@300 <-> @700 : 4 Bytes
+@700 <-> @900 : 2 Byte
+
+@CJAM
+100 is start
++100 is cmd
++100 is address
++400 is crc
++200 is idle
+@100 <-> @200 : 1 Byte
+@200 <-> @300 : 1 Byte
+@300 <-> @700 : 4 Bytes
+@700 <-> @900 : 2 Bytes
+
+@enduml
+

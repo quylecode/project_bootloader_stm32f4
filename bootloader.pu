@@ -1,0 +1,26 @@
+@startuml bootloader
+
+== Begin Update Firmware ==
+
+PC -> STM32: ""Send char update firmware""
+STM32 --> PC: ""ACK""
+|||
+PC -> STM32: ""Size bytes write flash""
+STM32 --> PC: ""ACK ( memory enough )""
+STM32 --> PC: ""NACK ( over size flash )""
+PC ->>?     : ""End Update""
+|||
+PC -> STM32: ""Send char start update""
+STM32 --> PC: ""ACK""
+|||
+PC -> STM32: ""Send a file hex""
+STM32 --> PC: ""ACK ( data ok )""
+STM32 --> PC: ""NACK ( data error )""
+PC ->>?     : ""Resend data""
+|||
+PC -> STM32: ""Send char end update""
+STM32 --> PC: ""ACK""
+
+== End Update Firmware ==
+
+@enduml
